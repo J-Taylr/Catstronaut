@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    [Header("Player")]
+    [SerializeField] float moveSpeed;
     [SerializeField] PlayerMovement player;
     [SerializeField] Animator animator;
     [Header("bullet")]
     [SerializeField] GameObject bulletspawn;
     [SerializeField] GameObject bullet;
-    bool playerIsMoving = false;
 
-    public float moveSpeed;
+    bool playerIsMoving = false;
     private Vector2 moveDirection;
 
     void Update()
