@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
             Vector3 newxSpawn = spawnPoint.transform.position + new Vector3(-30, 0, Random.Range(25, -20));
             print("spawning");
             GameObject enemy = Instantiate(enemyPrefab, newxSpawn, Quaternion.Euler(90, 0, 0));
-            yield return new WaitForSeconds(spawnRate)
+            yield return new WaitForSeconds(spawnRate);
         }              
        
     }
