@@ -41,9 +41,11 @@ public class GameManager : MonoBehaviour
         spawntimer += Time.deltaTime * spawnRate;
         if (spawntimer >= 1)
         {
-            spawntimer = 0;            
-            GameObject newEnemy =  enemySpawner[Random.Range(0, 4)].SpawnEnemy();
-            meteorsSpawned.Add(newEnemy);
+            spawntimer = 0; 
+            
+                GameObject newEnemy = enemySpawner[Random.Range(0, 4)].SpawnEnemy();
+                meteorsSpawned.Add(newEnemy);
+            
          }
 
     }

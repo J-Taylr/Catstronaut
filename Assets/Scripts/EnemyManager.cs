@@ -6,8 +6,8 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] float enemyHealth = 30;
     [SerializeField] float speed = 5f;
-    [SerializeField] Transform target;
-    [SerializeField] BulletManager bulletManager;
+    [SerializeField] Transform target;    
+    [SerializeField] GameObject ExplodeFX;
     float bulletDamage;
 
   
@@ -30,7 +30,12 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        Instantiate(ExplodeFX, transform.position, Quaternion.Euler(90, 0, 0));
+        Destroy(ExplodeFX.gameObject, 1);
+    }
 
-   
-    
+
+
 }

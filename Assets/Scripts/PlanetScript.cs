@@ -25,6 +25,8 @@ public class PlanetScript : MonoBehaviour {
     {
         if (collision.collider.CompareTag("Enemy"))
         {
+            var enemy = collision.gameObject;            
+            Destroy(enemy);
             animator.Play("SadCat");
             turretAnimator.Play("HeartBreak");
             GameManager.Instance.SetHealth();
