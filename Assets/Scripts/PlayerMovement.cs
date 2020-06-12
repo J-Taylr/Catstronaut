@@ -31,16 +31,28 @@ public class PlayerMovement : MonoBehaviour {
     private void MovePlayer()
     {
         moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
-        playerIsMoving = true;
-
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+        {
+            playerIsMoving = true;
+        }
+        if (Input.GetKeyDown(KeyCode.D) && Input.GetKeyDown(KeyCode.A))
+        {
+            playerIsMoving = false;
+        }
     }
 
-    private void PlayerShoot()
+
+    void PlayerShoot()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(bullet, bulletspawn.transform.position, bulletspawn.transform.rotation);
+            animator.Play("Fire");
         }
+    }
+
+    private void FireBullet()
+    {        
+       Instantiate(bullet, bulletspawn.transform.position, bulletspawn.transform.rotation);        
     }
 
     private void AnimationController()
@@ -48,6 +60,10 @@ public class PlayerMovement : MonoBehaviour {
         if (playerIsMoving)
         {
             animator.Play("PlayerWalk");
+        }
+        if (!playerIsMoving)
+        {
+            animator.Play("Idle");
         }
     
     }
