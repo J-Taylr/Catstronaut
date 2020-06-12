@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletManager : MonoBehaviour
 {
     [SerializeField] float speed = 500f;
+    
+    [SerializeField] GameObject ParticlePrefab;
+    public float bulletDamage = 10f;
+
     Rigidbody rigidbody;
     void Start()
     {
@@ -17,8 +21,13 @@ public class Bullet : MonoBehaviour
         rigidbody.velocity = transform.up * Time.fixedDeltaTime * speed;
     }
 
-    private void OnCollisionEnter(Collision collision)
+   
+
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject, 2f);
+        
+        Instantiate(ParticlePrefab, transform.position, Quaternion.identity);        
+        Destroy(ParticlePrefab, 0.5f);
+        Destroy(gameObject);
     }
 }

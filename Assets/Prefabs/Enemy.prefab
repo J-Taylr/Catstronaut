@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd944729cdce0040a01dd3a26c03ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 30
   speed: 2
   target: {fileID: 2271866142316601932, guid: f68815e25c4bec647996afaa2e633172, type: 3}
+  bulletManager: {fileID: 0}
 --- !u!65 &3697609563323650773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75,7 +77,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 48
   m_CollisionDetection: 0
 --- !u!212 &3697609563323650770
 SpriteRenderer:

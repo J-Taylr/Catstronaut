@@ -1,26 +1,42 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
     [Header("Player")]
     [SerializeField] float moveSpeed;
-    [SerializeField] PlayerMovement player;
+    [SerializeField] PlayerController player;
     [SerializeField] Animator animator;
-    [Header("bullet")]
+    [Header("Bullet")]
     [SerializeField] GameObject bulletspawn;
     [SerializeField] GameObject bullet;
+
+    [Header("Misc")]
+    public int playerScore = 0;
+    [SerializeField] Text scoreText;
 
     bool playerIsMoving = false;
     private Vector2 moveDirection;
 
+
+    private void Start()
+    {
+        scoreText.text = playerScore.ToString();
+    }
+
+
+
     void Update()
     {
         MovePlayer();
-        PlayerShoot();
-        AnimationController();
+        PlayerShoot();        
+        PlayerScore();
     }
+
+ 
 
     void FixedUpdate()
     {
@@ -55,17 +71,9 @@ public class PlayerMovement : MonoBehaviour {
        Instantiate(bullet, bulletspawn.transform.position, bulletspawn.transform.rotation);        
     }
 
-    private void AnimationController()
+    private void PlayerScore()
     {
-        if (playerIsMoving)
-        {
-            animator.Play("PlayerWalk");
-        }
-        if (!playerIsMoving)
-        {
-            animator.Play("Idle");
-        }
-    
+        scoreText.text = playerScore.ToString();        
     }
 
 }
