@@ -10,31 +10,27 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] BulletManager bulletManager;
     float bulletDamage;
 
-    private void Start()
-    {
-       
-    }
+  
     void Update()
     {
         float moveSpeed = Time.deltaTime * speed;
         transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        enemyHealth = enemyHealth - bulletDamage;
+        
+        enemyHealth = enemyHealth - damage;
+        GameManager.Instance.SetScore(20);
         print(enemyHealth);
         if (enemyHealth <= 0)
         {
+            GameManager.Instance.SetScore(100);
             Destroy(gameObject);
         }
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        TakeDamage();
-    }
    
     
 }

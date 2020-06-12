@@ -6,6 +6,9 @@ public class PlanetScript : MonoBehaviour {
 
     public float playerGravity = -12;
     public float enemyGravity = -6;
+    [SerializeField] Animator animator;
+    [SerializeField] Animator turretAnimator;
+    
 
     public void PlayerAttract(Transform playerTransform)
     {
@@ -18,14 +21,15 @@ public class PlanetScript : MonoBehaviour {
         playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, 50f * Time.deltaTime);
     }
 
-    public void EnemyAttract(Transform enemyTransform)
+    private void OnCollisionEnter(Collision collision)
     {
-        Vector3 gravityUp = (enemyTransform.position - transform.position).normalized;
-        Vector3 localUp = enemyTransform.up;
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            animator.Play("SadCat");
+            turretAnimator.Play("HeartBreak");
+            GameManager.Instance.SetHealth();
+        }
 
-        enemyTransform.GetComponent<Rigidbody>().AddForce(gravityUp * enemyGravity);
-
-        Quaternion targetRotation = Quaternion.FromToRotation(localUp, gravityUp) * enemyTransform.rotation;
-        enemyTransform.rotation = Quaternion.Slerp(enemyTransform.rotation, targetRotation, 50f * Time.deltaTime);
     }
+
 }

@@ -8,6 +8,7 @@ public class BulletManager : MonoBehaviour
     
     [SerializeField] GameObject ParticlePrefab;
     public float bulletDamage = 10f;
+    PlayerController playerController;
 
     Rigidbody rigidbody;
     void Start()
@@ -18,16 +19,21 @@ public class BulletManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rigidbody.velocity = transform.up * Time.fixedDeltaTime * speed;
+        rigidbody.velocity = transform.up * Time.fixedDeltaTime * speed;        
     }
 
    
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Enemy"))
+        {            
+            other.GetComponent<EnemyManager>().TakeDamage(bulletDamage);           
+            Instantiate(ParticlePrefab, transform.position, Quaternion.identity);
+            Destroy(ParticlePrefab.gameObject, 0.5f);
+            Destroy(gameObject);
+
+        }
         
-        Instantiate(ParticlePrefab, transform.position, Quaternion.identity);        
-        Destroy(ParticlePrefab, 0.5f);
-        Destroy(gameObject);
     }
 }

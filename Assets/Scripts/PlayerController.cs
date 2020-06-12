@@ -14,19 +14,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] GameObject bulletspawn;
     [SerializeField] GameObject bullet;
 
-    [Header("Misc")]
-    public int playerScore = 0;
-    [SerializeField] Text scoreText;
 
-    bool playerIsMoving = false;
+    public bool playerIsMoving = false;
     private Vector2 moveDirection;
-
-
-    private void Start()
-    {
-        scoreText.text = playerScore.ToString();
-    }
-
 
 
     void Update()
@@ -67,13 +57,15 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FireBullet()
-    {        
-       Instantiate(bullet, bulletspawn.transform.position, bulletspawn.transform.rotation);        
+    {
+
+        BulletManager newBullet = Instantiate(bullet, bulletspawn.transform.position, bulletspawn.transform.rotation).GetComponent<BulletManager>();
+        
     }
 
     private void PlayerScore()
     {
-        scoreText.text = playerScore.ToString();        
+            
     }
 
 }
