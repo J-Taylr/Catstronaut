@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    
     [SerializeField] float spawnRate = 10f;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] GameObject spawnPoint;
     [Header("Position")]
     public bool TB; //top bottom (! = left right)
 
+
    
 
-    
-
-   public GameObject SpawnEnemy()
+    public GameObject SpawnEnemy()
     {
         Vector3 newxSpawn;
         if (TB)

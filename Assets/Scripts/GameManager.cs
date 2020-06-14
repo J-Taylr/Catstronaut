@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         UI = GetComponent<UIManager>();
     }
 
-
+    
     private void Update()
     {
         spawntimer += Time.deltaTime * spawnRate;
@@ -106,6 +106,10 @@ public class GameManager : MonoBehaviour
         if (playerHealth == 1)
         {
             lifeTwo.enabled = false;
+        }
+        if (playerHealth <= 0)
+        {
+            lifeOne.enabled = false;
         }
     }
     
