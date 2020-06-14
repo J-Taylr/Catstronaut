@@ -10,8 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Position")]
     public bool TB; //top bottom (! = left right)
 
-    int randomX = Random.Range(-30, 30);
-    int randomZ = Random.Range(-21, 21);
+   
 
     
 

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 [RequireComponent(typeof(UIManager))]
 public class GameManager : MonoBehaviour
 {
@@ -10,13 +12,25 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     [HideInInspector] public UIManager UI;
+    [Header("Spawners")]
     public List<EnemySpawner> enemySpawner = new List<EnemySpawner>();
     public List<GameObject> meteorsSpawned = new List<GameObject>();
     [Tooltip("meteor per sec")] public float spawnRate;
     public float spawntimer;
+
+    [Header("Animators")]
+    [SerializeField] Animator catAnim;
+    [SerializeField] Animator turretAnim;
+
+    [Header("UI")]
+    [SerializeField] Image lifeOne;
+    [SerializeField] Image lifeTwo;
+    [SerializeField] Image lifeThree;
+    [SerializeField] Image lifeFour;
+
     int playerScore;
     int playerHealth = 4;
-
+    
 
 
 
@@ -61,12 +75,38 @@ public class GameManager : MonoBehaviour
     public void SetHealth()
     {
         playerHealth--;
-
+        SetLives();
+        catAnim.Play("SadCat");
+        turretAnim.Play("HeartBreak");
         if (playerHealth <= 0)
         {
-            //death
+            SceneManager.LoadScene(2);
         }
 
     }
 
+    public void SetLives()
+    {
+        if (playerHealth == 4)
+        {
+            lifeFour.enabled = true;
+            lifeThree.enabled = true;
+            lifeTwo.enabled = true;
+            lifeOne.enabled = true;
+        }
+        if (playerHealth == 3)
+        {
+            lifeFour.enabled = false;
+        }
+        if (playerHealth == 2)
+        {
+            
+            lifeThree.enabled = false;
+        }
+        if (playerHealth == 1)
+        {
+            lifeTwo.enabled = false;
+        }
+    }
+    
 }

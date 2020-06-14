@@ -39,14 +39,25 @@ public class PlayerController : MonoBehaviour {
         moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
         {
-            playerIsMoving = true;
+            animator.SetBool("Walking", true);
         }
-        if (Input.GetKeyDown(KeyCode.D) && Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyUp(KeyCode.D) && Input.GetKeyUp(KeyCode.A))
         {
-            playerIsMoving = false;
+            animator.SetBool("Walking", false);
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            print("collided with turret");
+            var enemy = collision.gameObject;
+            Destroy(enemy);
+            GameManager.Instance.SetHealth();
+        }
+
+    }
 
     void PlayerShoot()
     {
