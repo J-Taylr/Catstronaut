@@ -30,8 +30,11 @@ public class GameManager : MonoBehaviour
 
     int playerScore;
     int playerHealth = 4;
-    
 
+    private void Start()
+    {
+        spawnRate = 0.3f;
+    }
 
 
 
@@ -61,6 +64,8 @@ public class GameManager : MonoBehaviour
                 meteorsSpawned.Add(newEnemy);
             
          }
+
+        IncreaseSpawnRate();
 
     }
 
@@ -113,4 +118,39 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public void IncreaseSpawnRate()
+    {
+
+        if (playerScore >= 20)
+        {
+            print(" spawn increase");
+            spawnRate = 0.4f;
+        }
+        if (playerScore >= 1000)
+        {
+            spawnRate = 0.5f;
+        }
+        if (playerScore >= 1500)
+        {
+            spawnRate = 0.6f;
+        }
+        if (playerScore >= 2000)
+        {
+            spawnRate = 0.7f;
+        }
+        if (playerScore >= 2500)
+        {
+            spawnRate = 0.8f;
+        }
+
+
+
+
+
+
+
+    }
+
+
+
 }
