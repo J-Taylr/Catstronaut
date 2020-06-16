@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 
 [RequireComponent(typeof(UIManager))]
+[RequireComponent(typeof(AudioManager))]
 public class GameManager : MonoBehaviour
 {
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     [HideInInspector] public UIManager UI;
+    [HideInInspector] public AudioManager audioManager;
     [Header("Spawners")]
     public List<EnemySpawner> enemySpawner = new List<EnemySpawner>();
     public List<EnemyManager> meteorsSpawned = new List<EnemyManager>();
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
     public void SetHealth()
     {
         playerHealth--;
+        audioManager.nextSection();
         cameraAnim.SetTrigger("Damage");
         SetLives();
         catAnim.Play("SadCat");
