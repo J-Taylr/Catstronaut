@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator catAnim;
     [SerializeField] Animator turretAnim;
     [SerializeField] Animator commsCat;
+    [SerializeField] Animator cameraAnim;
 
     [Header("UI")]
     [SerializeField] Image lifeOne;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     int playerScore;
     int playerHealth = 4;
     bool scoreBeaten = false;
-    float scoreCap = 500;
+   [SerializeField] float scoreCap = 500;
 
     HighScore highScore;
     
@@ -108,6 +109,7 @@ public class GameManager : MonoBehaviour
     public void SetHealth()
     {
         playerHealth--;
+        cameraAnim.SetTrigger("Damage");
         SetLives();
         catAnim.Play("SadCat");
         commsCat.SetTrigger("Sad");
@@ -155,7 +157,7 @@ public class GameManager : MonoBehaviour
         if (playerScore >= scoreCap)
         {
             scoreCap += 500;
-            spawnRate += 0.3f;
+            spawnRate += 0.03f;
         }
         
 

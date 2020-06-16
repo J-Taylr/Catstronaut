@@ -45,6 +45,14 @@ public class PlayerController : MonoBehaviour {
         {
             animator.SetBool("Walking", false);
         }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            moveSpeed *= 2;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            moveSpeed /= 2;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
