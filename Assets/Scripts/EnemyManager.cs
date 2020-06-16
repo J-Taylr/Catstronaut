@@ -15,7 +15,8 @@ public class EnemyManager : MonoBehaviour
  
     public void MeteorSetup(float setupSpeed)
     {
-
+        transform.right = target.position - transform.position;
+        transform.eulerAngles += Vector3.right * 90;
         speed = setupSpeed;
         if (speed >= 7)
         {

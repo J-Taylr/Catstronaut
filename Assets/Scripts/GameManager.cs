@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     int playerScore;
     int playerHealth = 4;
+    bool scoreBeaten = false;
+    float scoreCap = 500;
 
     HighScore highScore;
     
@@ -92,9 +94,14 @@ public class GameManager : MonoBehaviour
 
         if (playerScore > PlayerPrefs.GetInt("HighScore", 0))
         {
+
             PlayerPrefs.SetInt("HighScore", playerScore);            
             UI.UpdateHighScore(playerScore);
-            UI.HighScoreAnim();
+            if (!scoreBeaten)
+            {
+                UI.HighScoreAnim();
+                scoreBeaten = true; 
+            }
         }
     }
 
@@ -145,32 +152,14 @@ public class GameManager : MonoBehaviour
     
     public void IncreaseSpawnRate()
     {
-
-        if (playerScore >= 500)
+        if (playerScore >= scoreCap)
         {
-            print(" spawn increase");
-            spawnRate = 0.4f;
+            scoreCap += 500;
+            spawnRate += 0.3f;
         }
-        if (playerScore >= 1000)
-        {
-            spawnRate = 0.5f;
-        }
-        if (playerScore >= 1500)
-        {
-            spawnRate = 0.6f;
-        }
-        if (playerScore >= 2000)
-        {
-            spawnRate = 0.7f;
-        }
-        if (playerScore >= 2500)
-        {
-            spawnRate = 0.8f;
-        }
+        
 
-
-
-
+        
 
 
 

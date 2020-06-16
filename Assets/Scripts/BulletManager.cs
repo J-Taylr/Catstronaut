@@ -31,7 +31,7 @@ public class BulletManager : MonoBehaviour
         {            
             other.GetComponent<EnemyManager>().TakeDamage(bulletDamage);           
             Instantiate(ParticlePrefab, transform.position, Quaternion.identity);
-            Destroy(ParticlePrefab.gameObject, 0.5f);
+           // Destroy(ParticlePrefab.gameObject, 0.5f);
             Destroy(gameObject);
 
         }

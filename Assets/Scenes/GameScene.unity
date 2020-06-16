@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 502231324}
   highScore: {fileID: 1967199279}
+  scoreAnim: {fileID: 1967199281}
 --- !u!95 &400263579
 Animator:
   serializedVersion: 3
@@ -1346,6 +1347,7 @@ GameObject:
   - component: {fileID: 1967199278}
   - component: {fileID: 1967199280}
   - component: {fileID: 1967199279}
+  - component: {fileID: 1967199281}
   m_Layer: 5
   m_Name: HighScore
   m_TagString: Untagged
@@ -1401,7 +1403,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4281845018
-  m_fontColor: {r: 0.105820596, g: 0.7735849, b: 0.21811341, a: 1}
+  m_fontColor: {r: 0.1058206, g: 0.7735849, b: 0.2181134, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1491,6 +1493,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967199277}
   m_CullTransparentMesh: 0
+--- !u!95 &1967199281
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967199277}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d02e6eb0daeddea4c82f502ac4ae1b13, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1977773813 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8171053681056735188, guid: d3b229b113292ec47b4c9b71346625f3,
