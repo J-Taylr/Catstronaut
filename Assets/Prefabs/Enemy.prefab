@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3697609563323650773}
   - component: {fileID: 3697609563323650769}
   - component: {fileID: 3697609563323650770}
+  - component: {fileID: 95580210168068018}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -51,6 +52,8 @@ MonoBehaviour:
   target: {fileID: 2271866142316601932, guid: f68815e25c4bec647996afaa2e633172, type: 3}
   ExplodeFX: {fileID: 2057933266984333269, guid: 6d931a18f55b3c148ae75cb579b4d53b,
     type: 3}
+  meteorAnim: {fileID: 95580210168068018}
+  catComms: {fileID: 414116982139033264, guid: 3418d9960b75f1846b4868e610b57cfd, type: 3}
 --- !u!65 &3697609563323650773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -128,3 +131,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &95580210168068018
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3697609563323650767}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c750bb8897a71942a21271c0faef321, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+
 [RequireComponent(typeof(UIManager))]
 public class GameManager : MonoBehaviour
 {
@@ -14,13 +16,14 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public UIManager UI;
     [Header("Spawners")]
     public List<EnemySpawner> enemySpawner = new List<EnemySpawner>();
-    public List<GameObject> meteorsSpawned = new List<GameObject>();
+    public List<EnemyManager> meteorsSpawned = new List<EnemyManager>();
     [Tooltip("meteor per sec")] public float spawnRate;
     public float spawntimer;
 
     [Header("Animators")]
     [SerializeField] Animator catAnim;
     [SerializeField] Animator turretAnim;
+    [SerializeField] Animator commsCat;
 
     [Header("UI")]
     [SerializeField] Image lifeOne;
@@ -31,8 +34,12 @@ public class GameManager : MonoBehaviour
     int playerScore;
     int playerHealth = 4;
 
+    HighScore highScore;
+    
+
     private void Start()
     {
+        
         spawnRate = 0.3f;
     }
 
@@ -55,26 +62,40 @@ public class GameManager : MonoBehaviour
     
     private void Update()
     {
+        SpawnEnemy();
+    }
+
+    public void SpawnEnemy()
+    {
         spawntimer += Time.deltaTime * spawnRate;
         if (spawntimer >= 1)
         {
-            spawntimer = 0; 
-            
-                GameObject newEnemy = enemySpawner[Random.Range(0, 4)].SpawnEnemy();
-                meteorsSpawned.Add(newEnemy);
-            
-         }
+            spawntimer = 0;
+
+            EnemyManager newEnemy = enemySpawner[Random.Range(0, enemySpawner.Count)].SpawnEnemy();
+            float speed = Random.Range(3, 14);
+            newEnemy.MeteorSetup(speed);
+            if (speed >= 7 ) { commsCat.SetTrigger("Danger"); }
+            meteorsSpawned.Add(newEnemy);
+
+        }
 
         IncreaseSpawnRate();
-
     }
-
 
 
     public void SetScore(int addScore)
     {
         playerScore += addScore;
         UI.UpdateScore(playerScore);
+        Debug.Log(PlayerPrefs.GetInt("HighScore", 0));
+
+        if (playerScore > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", playerScore);            
+            UI.UpdateHighScore(playerScore);
+            UI.HighScoreAnim();
+        }
     }
 
     public void SetHealth()
@@ -82,6 +103,7 @@ public class GameManager : MonoBehaviour
         playerHealth--;
         SetLives();
         catAnim.Play("SadCat");
+        commsCat.SetTrigger("Sad");
         turretAnim.Play("HeartBreak");
         if (playerHealth <= 0)
         {
@@ -89,6 +111,9 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+
+
 
     public void SetLives()
     {
@@ -121,7 +146,7 @@ public class GameManager : MonoBehaviour
     public void IncreaseSpawnRate()
     {
 
-        if (playerScore >= 20)
+        if (playerScore >= 500)
         {
             print(" spawn increase");
             spawnRate = 0.4f;

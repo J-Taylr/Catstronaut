@@ -13,7 +13,8 @@ public class BulletManager : MonoBehaviour
     Rigidbody rigidbody;
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>(); 
+        rigidbody = GetComponent<Rigidbody>();
+        Destroy(this.gameObject, 6);
     }
 
     // Update is called once per frame

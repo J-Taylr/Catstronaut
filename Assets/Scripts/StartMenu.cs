@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] TextMeshProUGUI highScore;
 
-
-   public void StartGame()
+    private void Start()
     {
-        animator.Play("ClickFlash");
-        StartCoroutine(Wait());
+        highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString("00000"); 
     }
 
-    IEnumerator Wait()
+
+    public void StartGame()
     {
-        yield return new WaitForSeconds(2);
+        
         SceneManager.LoadScene(1);
+       
     }
+
+   
 }

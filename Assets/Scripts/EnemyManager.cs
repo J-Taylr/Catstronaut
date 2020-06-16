@@ -9,18 +9,31 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] Transform target;    
     [SerializeField] GameObject ExplodeFX;
     float bulletDamage;
-
-    private void Start()
+    [Header("Animators")]
+    
+    [SerializeField] Animator meteorAnim;
+ 
+    public void MeteorSetup(float setupSpeed)
     {
-        
-        speed = Random.Range(3,20);
+
+        speed = setupSpeed;
+        if (speed >= 7)
+        {
+            enemyHealth = 10;
+            meteorAnim.SetTrigger("IsFast");
+        }
+        else { enemyHealth = Random.Range(5, 16); }
+        if (enemyHealth >= 11)
+        {
+            transform.localScale *= 2;
+        }
     }
+
 
     void Update()
     {
         float moveSpeed = Time.deltaTime * speed;
-        if (speed >= 10) { enemyHealth = 10; }
-        else { enemyHealth = Random.Range(10, 30); }
+        
         transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed);
     }
 

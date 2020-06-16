@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     
     [SerializeField] float spawnRate = 10f;
-    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject enemyPrefab;    
     [SerializeField] GameObject spawnPoint;
     [Header("Position")]
     public bool TB; //top bottom (! = left right)
@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
    
 
-    public GameObject SpawnEnemy()
+    public EnemyManager SpawnEnemy()
     {
         Vector3 newxSpawn;
         if (TB)
@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
         {
             newxSpawn = spawnPoint.transform.position + new Vector3(0, 0, Random.Range(25, -20));
         }
-            GameObject enemy = Instantiate(enemyPrefab, newxSpawn, Quaternion.Euler(90, 0, 0));
-        return enemy;
+            GameObject enemy = Instantiate(enemyPrefab, newxSpawn, Quaternion.Euler(90, 0, 180));
+        return enemy.GetComponent<EnemyManager>();
     }    
 }
