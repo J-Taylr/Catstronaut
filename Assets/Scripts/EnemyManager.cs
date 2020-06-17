@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Experimental.Rendering.Universal;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] float enemyHealth;
     [SerializeField] float speed = 5f;
     [SerializeField] Transform target;    
     [SerializeField] GameObject ExplodeFX;
+    [SerializeField] Light2D light2D;
+    public float maxLight;
     float bulletDamage;
     [Header("Animators")]
     
@@ -15,9 +17,10 @@ public class EnemyManager : MonoBehaviour
  
     public void MeteorSetup(float setupSpeed)
     {
-        transform.right = target.position - transform.position;
-        transform.eulerAngles += Vector3.right * 90;
+        transform.up = target.position - transform.position;
+        //transform.eulerAngles += Vector3.right * 90;
         speed = setupSpeed;
+        MeteorLight();
         if (speed >= 7)
         {
             enemyHealth = 10;
@@ -28,6 +31,13 @@ public class EnemyManager : MonoBehaviour
         {
             transform.localScale *= 2;
         }
+    }
+
+
+    public void MeteorLight()
+    {
+        light2D.intensity = maxLight * (speed / 14);
+
     }
 
 
@@ -53,7 +63,7 @@ public class EnemyManager : MonoBehaviour
 
     private void OnDestroy()
     {
-       Instantiate(ExplodeFX, transform.position, Quaternion.Euler(90, 0, 0));
+       Instantiate(ExplodeFX, transform.position, Quaternion.Euler(0, 0, 0));
         
     }
 

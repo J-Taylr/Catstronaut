@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     {
         music = FMODUnity.RuntimeManager.CreateInstance("event:/Music");
         music.setParameterByName("Lives", 0);
-        music.start();
+       // music.start();
         spawnRate = 0.3f;
     }
 

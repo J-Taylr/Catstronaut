@@ -24,9 +24,9 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            newxSpawn = spawnPoint.transform.position + new Vector3(0, 0, Random.Range(25, -20));
+            newxSpawn = spawnPoint.transform.position + new Vector3(0, Random.Range(25, -20), 0);
         }
-            GameObject enemy = Instantiate(enemyPrefab, newxSpawn, Quaternion.Euler(90, 0, 180));
+            GameObject enemy = Instantiate(enemyPrefab, newxSpawn, Quaternion.Euler(0, 0, 0));
         return enemy.GetComponent<EnemyManager>();
     }    
 }
