@@ -7,9 +7,13 @@ using TMPro;
 public class EndMenu : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI highScore;
+
+    [SerializeField] TextMeshProUGUI endScore;
     private void Start()
     {
         highScore.text = PlayerPrefs.GetInt("HighScore", 00000).ToString("00000");
+        endScore.text = PlayerPrefs.GetInt("CurrentScore", 00000).ToString("00000");
+
     }
 
 

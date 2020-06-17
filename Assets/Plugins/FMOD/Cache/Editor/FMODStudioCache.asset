@@ -17,7 +17,66 @@ MonoBehaviour:
   lastModified: 637279927388165043
   LoadResult: 0
   FileSizes: []
+  Exists: 0
+--- !u!114 &-5901946821593390022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Fmod/Project/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637280018720019193
+  LoadResult: 0
+  FileSizes: []
   Exists: 1
+--- !u!114 &-4079682694020616919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Explosion
+  m_EditorClassIdentifier: 
+  Path: event:/Explosion
+  guid: 2c63665c610e934bab319a1a70788338
+  Banks:
+  - {fileID: -5901946821593390022}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4000
+--- !u!114 &-1112545690576563021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Fmod/Project/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637280017361717598
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,15 +91,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 8926783802708901047}
-  - {fileID: -7648342888489268891}
+  - {fileID: -5901946821593390022}
   EditorEvents:
   - {fileID: 2956065064536011937}
+  - {fileID: 1443599711354531196}
+  - {fileID: -4079682694020616919}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7648342888489268891}
+  - {fileID: -5901946821593390022}
   StringsBanks:
   - {fileID: 8926783802708901047}
-  stringsBankWriteTime: 637279927388394904
+  stringsBankWriteTime: 637280018720259698
   cacheVersion: 3
 --- !u!114 &361904859127698916
 MonoBehaviour:
@@ -60,6 +121,40 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &816282882313766939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/Lives
+  m_EditorClassIdentifier: 
+  Name: Lives
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 1
+--- !u!114 &861279482025609297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/Lives
+  m_EditorClassIdentifier: 
+  Name: Lives
+  Min: 0
+  Max: 6
+  Default: 0
+  Exists: 0
 --- !u!114 &1174486907850109946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +173,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &1443599711354531196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lasermeow
+  m_EditorClassIdentifier: 
+  Path: event:/Lasermeow
+  guid: 1e36e05723039346987be47237b5e3ac
+  Banks:
+  - {fileID: -5901946821593390022}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2000
 --- !u!114 &2956065064536011937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,12 +211,12 @@ MonoBehaviour:
   Path: event:/Music
   guid: 0591275a8ceda64484faa6dfd6b4f1a1
   Banks:
-  - {fileID: -7648342888489268891}
+  - {fileID: -5901946821593390022}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 3735584821309921792}
+  - {fileID: 816282882313766939}
   MinDistance: 0
   MaxDistance: 0
   Length: 117626
@@ -118,7 +236,7 @@ MonoBehaviour:
   Min: 0
   Max: 6
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &6312183622752285058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,11 +286,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Fmod/Project/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637279927388394904
+  lastModified: 637280018720259698
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 778
+    Value: 870
   Exists: 1
 --- !u!114 &8963830437767045620
 MonoBehaviour:

@@ -55,7 +55,7 @@ public class EnemyManager : MonoBehaviour
         GameManager.Instance.SetScore(20);
         if (enemyHealth <= 0)
         {
-            
+            GameManager.Instance.PlayExplosion();
             GameManager.Instance.SetScore(100);
             Destroy(gameObject);
         }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using FMODUnity;
 
 [RequireComponent(typeof(UIManager))]
-[RequireComponent(typeof(AudioManager))]
+
 public class GameManager : MonoBehaviour
 {
 
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
    [SerializeField] float scoreCap = 500;
 
     FMOD.Studio.EventInstance music;
+    FMOD.Studio.EventInstance bullet;
+    FMOD.Studio.EventInstance explode;
     HighScore highScore;
     
 
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         music = FMODUnity.RuntimeManager.CreateInstance("event:/Music");
         music.setParameterByName("Lives", 0);
-       // music.start();
+        music.start();
         spawnRate = 0.3f;
     }
 
@@ -96,7 +98,7 @@ public class GameManager : MonoBehaviour
     {
         playerScore += addScore;
         UI.UpdateScore(playerScore);
-        
+        PlayerPrefs.SetInt("CurrentScore", playerScore);
 
         if (playerScore > PlayerPrefs.GetInt("HighScore", 0))
         {
@@ -185,15 +187,16 @@ public class GameManager : MonoBehaviour
         {
             scoreCap += 500;
             spawnRate += 0.03f;
-        }
-        
-
-        
-
-
-
+        }        
     }
 
-
+    public void PlayBullet()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Lasermeow");
+    }
+    public void PlayExplosion()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Explosion");
+    }
 
 }

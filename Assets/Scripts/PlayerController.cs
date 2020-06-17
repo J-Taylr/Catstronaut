@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.Play("Fire");
+            GameManager.Instance.PlayBullet();
         }
     }
 
