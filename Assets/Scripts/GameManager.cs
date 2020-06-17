@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
+using FMODUnity;
 
 [RequireComponent(typeof(UIManager))]
 [RequireComponent(typeof(AudioManager))]
@@ -39,12 +39,15 @@ public class GameManager : MonoBehaviour
     bool scoreBeaten = false;
    [SerializeField] float scoreCap = 500;
 
+    FMOD.Studio.EventInstance music;
     HighScore highScore;
     
 
     private void Start()
     {
-        
+        music = FMODUnity.RuntimeManager.CreateInstance("event:/Music");
+        music.setParameterByName("Lives", 0);
+        music.start();
         spawnRate = 0.3f;
     }
 
@@ -93,7 +96,7 @@ public class GameManager : MonoBehaviour
     {
         playerScore += addScore;
         UI.UpdateScore(playerScore);
-        Debug.Log(PlayerPrefs.GetInt("HighScore", 0));
+        
 
         if (playerScore > PlayerPrefs.GetInt("HighScore", 0))
         {
@@ -111,17 +114,38 @@ public class GameManager : MonoBehaviour
     public void SetHealth()
     {
         playerHealth--;
-        audioManager.nextSection();
         cameraAnim.SetTrigger("Damage");
         SetLives();
         catAnim.Play("SadCat");
         commsCat.SetTrigger("Sad");
         turretAnim.Play("HeartBreak");
+        SetMusic();
         if (playerHealth <= 0)
         {
             SceneManager.LoadScene(2);
         }
 
+    }
+
+    public void SetMusic()
+    {
+        if (playerHealth == 3)
+        {
+            print("section switch");
+            music.setParameterByName("Lives", 1);
+        }
+        if (playerHealth == 2)
+        {
+            music.setParameterByName("Lives", 2); 
+        }
+        if (playerHealth == 1)
+        {
+            music.setParameterByName("Lives", 3);
+        }
+        if (playerHealth == 0)
+        {
+            music.setParameterByName("Lives", 4);
+        }
     }
 
 
