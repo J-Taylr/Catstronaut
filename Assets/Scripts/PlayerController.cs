@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PlayerController : MonoBehaviour {
 
     [Header("Player")]
@@ -13,17 +14,21 @@ public class PlayerController : MonoBehaviour {
     [Header("Bullet")]
     [SerializeField] GameObject bulletspawn;
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bigBullet;
 
 
     public bool playerIsMoving = false;
     private Vector2 moveDirection;
 
+   public bool boughtBigBullet = false;
+    
 
     void Update()
     {
         MovePlayer();
         PlayerShoot();        
         PlayerScore();
+        
     }
 
  
@@ -69,18 +74,31 @@ public class PlayerController : MonoBehaviour {
 
     void PlayerShoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
         {
             animator.Play("Fire");
-            GameManager.Instance.PlayBullet();
+            
         }
     }
 
     private void FireBullet()
     {
-
-        BulletManager newBullet = Instantiate(bullet, bulletspawn.transform.position, bulletspawn.transform.rotation).GetComponent<BulletManager>();
-        
+        if (boughtBigBullet)
+        {
+            int rdm = UnityEngine.Random.Range(1, 3);
+            if (rdm == 1)
+            {
+                BulletManager newBullet = Instantiate(bullet, bulletspawn.transform.position, bulletspawn.transform.rotation).GetComponent<BulletManager>();
+            }
+            if (rdm == 2)
+            {
+                BulletManager newBullet = Instantiate(bigBullet, bulletspawn.transform.position, bulletspawn.transform.rotation).GetComponent<BulletManager>();
+            }
+        }
+        else
+        {
+            BulletManager newBullet = Instantiate(bullet, bulletspawn.transform.position, bulletspawn.transform.rotation).GetComponent<BulletManager>();
+        }
     }
 
     private void PlayerScore()

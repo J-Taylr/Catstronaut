@@ -33,10 +33,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image lifeTwo;
     [SerializeField] Image lifeThree;
     [SerializeField] Image lifeFour;
+    [SerializeField] GameObject gameScreen;
+    [SerializeField] GameObject overScreen;
 
     int playerScore;
     int playerHealth = 4;
     bool scoreBeaten = false;
+    
    [SerializeField] float scoreCap = 500;
 
     FMOD.Studio.EventInstance music;
@@ -49,10 +52,16 @@ public class GameManager : MonoBehaviour
     {
         music = FMODUnity.RuntimeManager.CreateInstance("event:/Music");
         music.setParameterByName("Lives", 0);
+        
         music.start();
         spawnRate = 0.3f;
+
+
+        overScreen.SetActive(false);
+        gameScreen.SetActive(true);
     }
 
+    
 
 
     private void Awake()
@@ -73,6 +82,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         SpawnEnemy();
+        SetMusic();
     }
 
     public void SpawnEnemy()
@@ -121,10 +131,16 @@ public class GameManager : MonoBehaviour
         catAnim.Play("SadCat");
         commsCat.SetTrigger("Sad");
         turretAnim.Play("HeartBreak");
-        SetMusic();
+        
         if (playerHealth <= 0)
         {
-            SceneManager.LoadScene(2);
+            gameScreen.SetActive(false);
+            overScreen.SetActive(true);
+
+
+           // stop gameplay and music
+           //make game over ui appear
+          
         }
 
     }
@@ -144,9 +160,9 @@ public class GameManager : MonoBehaviour
         {
             music.setParameterByName("Lives", 3);
         }
-        if (playerHealth == 0)
+        if (playerHealth <= 0)
         {
-            music.setParameterByName("Lives", 4);
+            music.release();
         }
     }
 
@@ -175,7 +191,7 @@ public class GameManager : MonoBehaviour
         {
             lifeTwo.enabled = false;
         }
-        if (playerHealth <= 0)
+        if (playerHealth < 1)
         {
             lifeOne.enabled = false;
         }
@@ -199,4 +215,9 @@ public class GameManager : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot("event:/Explosion");
     }
 
+    public void StopMusic()
+    {
+        music.release();
+    }
+   
 }

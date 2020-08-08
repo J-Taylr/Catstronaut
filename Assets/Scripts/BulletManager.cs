@@ -37,4 +37,10 @@ public class BulletManager : MonoBehaviour
         }
         
     }
+
+    public void FireSound()
+    {
+        GameManager.Instance.PlayBullet();
+    }
+
 }

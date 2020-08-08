@@ -19,6 +19,7 @@ public class EndMenu : MonoBehaviour
 
     public void RestartGame()
     {
+        GameManager.Instance.StopMusic();
         SceneManager.LoadScene(1);
     }
 
